@@ -49,7 +49,7 @@ export class SearchSpeechComponent implements OnInit {
       this.selectedSpeechIdex = index;
       this.speechForm.setValue({
         subjectKeyword: form.subjectKeyword ? form.subjectKeyword :"",
-        speechContent: form.subjectKeyword ? form.subjectKeyword :"",
+        speechContent: form.speechContent ? form.speechContent :"",
         author: form.author ? form.author :"",
         date: form.date ? form.date :"",
         id : form.id ? form.id :  "",
