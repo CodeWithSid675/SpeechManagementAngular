@@ -1,0 +1,85 @@
+<section *ngIf="allSpeaches.length > 0; else noSpeeches">
+  <nav>
+    <div class="card">
+      <div class="card-header">
+        <input type="text" class="serch-tb" placeholder="Search speech..." [(ngModel)]="searchKey" (input)="resetForm()">
+      </div>
+      <ul class="list-group list-group-flush speechList-container">
+        <ng-container *ngFor="let speech of allSpeaches | searchSpeechfilter: searchKey ;let i = index;">
+          <li *ngIf="speech.userId == 'testUser123'" class="list-group-item speech-list" [class.active]="selectedSpeechIdex == i "
+            (click)="setFormValue(speech,i)">{{speech.subjectKeyword}}</li>
+        </ng-container>
+      </ul>
+    </div>
+  </nav>
+
+  <article>
+    <div class="card speech-details-block">
+      <div class="card-body">
+        <form [formGroup]="speechForm" (ngSubmit)="updateSpeech()">
+          <div calss="row">
+            <div class="col">
+              <textarea class="speach-content" name="text" formControlName="speechContent"></textarea>
+            </div>
+          </div>
+          <div class="row tb-section">
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Author" formControlName="author">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Subject area keywords" formControlName="subjectKeyword">
+            </div>
+            <div class="col">
+              <input type="date" class="form-control" placeholder="DD/MM/YYYY" formControlName="date">
+            </div>
+          </div>
+          <div class="row tb-section">
+            <div class="col-md-6"></div>
+            <div class="col-md-2 col-xs-4 ">
+              <button type="button" (click)="deleteSpeech()" [disabled]="!speechForm.controls['id'].value">Delete</button>
+            </div>
+            <div class="col-md-2 col-xs-4 ">
+              <button [disabled]="!speechForm.valid || !speechForm.controls['id'].value">Save</button>
+            </div>
+            <div class="col-md-2 col-xs-4 ">
+              <button type="button" [disabled]="!speechForm.controls['id'].value" data-toggle="modal" data-target="#myModal">Share</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </article>
+</section>
+
+<ng-template #noSpeeches>
+  <div class="card speech-details-block">
+    <div class="card-body">
+      <div calss="row">
+        <div class="col">
+          <h3 class="text-center">No records found..!!</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<!-- Email Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+              <input type="text" class="form-control" placeholder="Enter Email id" [(ngModel)]="emailId">
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-5">
+                <button class="sendEmail-btn" [disabled]="validateEmail()" (click)="sendEmail();">Send Email</button>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

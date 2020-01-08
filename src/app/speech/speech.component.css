@@ -1,0 +1,13 @@
+.container-fluid{
+    
+}
+.app-container{
+    height :95vh;
+    margin: 2vh;
+    background-color: #eee;
+    border: 1px solid #000;
+}
+
+.m-1vh{
+    margin: 1vh;
+}

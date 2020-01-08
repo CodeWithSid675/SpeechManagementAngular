@@ -1,0 +1,96 @@
+nav {
+    float: left;
+    width: 30%;
+    height: 100%; /* only for demonstration, should be removed */
+    /* background: #ccc; */
+    padding: 20px;
+}
+
+/* Style the list inside the menu */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+article {
+    float: left;
+    padding: 20px;
+    width: 70%;
+    /* background-color: #f1f1f1; */
+    height: 100%; /* only for demonstration, should be removed */
+}
+
+/* Clear floats after the columns */
+section {
+    content: "";
+    display: table;
+    clear: both;
+    margin: 10px;
+    /* max-height: 70vh; */
+    border: 2px solid;
+    height: 85vh;
+    width : 98%
+}
+.speechList-container{
+    height:68vh;
+    overflow-y: auto;
+}
+
+.speech-details-block{
+    height: 100%;
+}
+
+
+.speach-content{
+    width: 100%;
+    overflow: hidden;
+    background-color: #FFF;
+    color: #222;
+    font-family: Courier, monospace;
+    font-weight: normal;
+    resize: none;
+    line-height: 38px;
+    padding-left: 100px;
+    padding-top: 13px;
+    background-image: url(https://static.tumblr.com/maopbtg/E9Bmgtoht/lines.png), url(https://static.tumblr.com/maopbtg/nBUmgtogx/paper.png);
+    background-repeat: repeat-y, repeat;
+    border-radius: 11px;
+    box-shadow: 0px 2px 14px #000;
+    border-top: 1px solid #FFF;
+    border-bottom: 1px solid #FFF;
+    resize: none;
+    height: 50vh;
+    overflow-y: auto;
+    font-size: 3vh;
+}
+
+.tb-section{
+    padding: 2vh;
+}
+
+.speech-list:hover{
+    background-color: #dcdcdc !important;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.speech-list.active{
+    background-color: #3b7785 !important;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.list-group-item.active {
+    border-color: #3b7785 !important;;
+}
+
+/* .speechList{
+    height: 100%;
+    overflow-y: auto;
+} */
+
+.serch-tb{
+    width: 100%;
+}

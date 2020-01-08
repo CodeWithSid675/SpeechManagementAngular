@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+.nav-pills .nav-link.active, .show>.nav-pills .nav-link {
+    color: #fff !important;
+    background-color: #3b7785 !important;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline !important;
+}
+
+.nav-item:hover{
+    /* background-color: #5a8f9c; */
+    color: #ffffff;
+    /* font-weight: bold; */
+    text-decoration: underline !important;
+    cursor: pointer;
+}
+
+button{
+    width:100%;
+    font-weight: bold;
+    border: 1px solid #000
+}
+
+button:disabled{
+   background-color: #e7e7e7;
+   color: #646363;
+   border: none;
+}
