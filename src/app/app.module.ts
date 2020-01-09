@@ -15,7 +15,7 @@ import { SearchSpeechComponent } from './speech/search-speech/search-speech.comp
 import {SpeechComponent} from './speech/speech.component';
 
 import {SpeechService} from './speech/speech.service';
-
+import { NgxSpinnerModule } from 'ngx-spinner'
 
 // import { ModalMoldule } from 'ngx-bootstrap/modal';
 @NgModule({
@@ -33,6 +33,7 @@ import {SpeechService} from './speech/speech.service';
     ReactiveFormsModule,
     FormsModule,
     HttpModule,
+    NgxSpinnerModule
     // ModalModule,
     // ModalModule.forRoot()
   ],

@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { SpeechService } from '../speech.service';
 import { Speech } from '../speech.model';
+
+import { NgxSpinnerService } from 'ngx-spinner'
 @Component({
   selector: 'app-search-speech',
   templateUrl: './search-speech.component.html',
@@ -22,7 +24,7 @@ export class SearchSpeechComponent implements OnInit {
   });
 
 
-  constructor(private speechService: SpeechService) {
+  constructor(private speechService: SpeechService, private spinner: NgxSpinnerService) {
   }
 
   ngOnInit() {
@@ -30,17 +32,20 @@ export class SearchSpeechComponent implements OnInit {
   }
 
   getAllArticles() {
+    this.spinner.show();
     this.speechService.getAllSpeeches()
       .subscribe(data => {
         console.log("Speech Fetched ===> ",JSON.stringify(data));
         if (data && data.length > 0) {
           this.allSpeaches = data.reverse();
-          this.setFormValue(this.allSpeaches[0],0)
+          this.setFormValue(this.allSpeaches[0],0);
+          this.spinner.hide();
         }
 
       },
       errorCode => {
         alert("Something went wrong");
+        this.spinner.hide();
       });
   }
 

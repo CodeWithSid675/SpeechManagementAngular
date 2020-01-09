@@ -2,6 +2,7 @@ import { Component, OnInit,ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SpeechService } from '../speech.service';
 import { Speech } from '../speech.model';
+import { NgxSpinnerService } from 'ngx-spinner'
 @Component({
   selector: 'app-view-speech',
   templateUrl: './view-speech.component.html',
@@ -22,7 +23,7 @@ export class ViewSpeechComponent implements OnInit {
   });
 
 
-  constructor(private speechService: SpeechService) {
+  constructor(private speechService: SpeechService, private spinner: NgxSpinnerService) {
   }
 
   ngOnInit() {
@@ -31,19 +32,22 @@ export class ViewSpeechComponent implements OnInit {
 
   //API call to get list of speeches
   getAllSpeeches() {
+    this.spinner.show();
     this.speechService.getAllSpeeches()
       .subscribe(data => {
         console.log(data);
         this.allSpeaches = [];
         if (data && data.length > 0) {
-          this.allSpeaches =  data.reverse();;
+          this.allSpeaches =  data.reverse();
           let index = this.selectedSpeechIdex ? this.selectedSpeechIdex : 0;
           this.setFormValue(this.allSpeaches[index],index)
+          this.spinner.hide();
         }
 
       },
       errorCode => {
         console.log("Something went wrong");
+        this.spinner.hide();
       });
   }
   
