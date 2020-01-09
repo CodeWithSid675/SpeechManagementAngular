@@ -9,7 +9,8 @@ import { Speech } from './speech.model';
 @Injectable()
 export class SpeechService {
     //JAVA DB URL
-    articleUrl = Constants.JOSN_DB_URL;
+    articleUrl = Constants.API_URL;
+    mailUrl = Constants.Mail_URL;
     // Header for the request
     headers = new Headers({ 'Content-Type': 'application/json' });
     requestOptions = new RequestOptions({ headers: this.headers });
@@ -53,6 +54,13 @@ export class SpeechService {
 	let body = res.json();
         return body;
     }
+
+    //email sending
+    sendMessage(body) {
+        return this.http.post(this.mailUrl, body)
+        .map(res => res.status)
+         .catch(this.handleError);
+      }
 
     // Handling error resposne
     private handleError (error: Response | any) {

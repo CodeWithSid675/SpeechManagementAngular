@@ -7,7 +7,7 @@
       <ul class="list-group list-group-flush speechList-container">
         <ng-container *ngFor="let speech of allSpeaches | searchSpeechfilter: searchKey ;let i = index;">
           <li *ngIf="speech.userId == 'testUser123'" class="list-group-item speech-list" [class.active]="selectedSpeechIdex == i "
-            (click)="setFormValue(speech,i)">{{speech.subjectKeyword}}</li>
+            (click)="setFormValue(speech,i);speechData = speech;">{{speech.subjectKeyword}}</li>
         </ng-container>
       </ul>
     </div>

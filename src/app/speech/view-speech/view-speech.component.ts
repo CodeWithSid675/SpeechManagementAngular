@@ -21,6 +21,7 @@ export class ViewSpeechComponent implements OnInit {
     id: new FormControl(''),
     userId: new FormControl(''),
   });
+  speechData: any;
 
 
   constructor(private speechService: SpeechService, private spinner: NgxSpinnerService) {
@@ -41,6 +42,7 @@ export class ViewSpeechComponent implements OnInit {
           this.allSpeaches =  data.reverse();
           let index = this.selectedSpeechIdex ? this.selectedSpeechIdex : 0;
           this.setFormValue(this.allSpeaches[index],index)
+          this.speechData = this.allSpeaches[index];
           this.spinner.hide();
         }
 
@@ -119,12 +121,24 @@ export class ViewSpeechComponent implements OnInit {
 
 //Send email function
   sendEmail(){
-    /*
-      Send Email Logic
-    */
-
-    alert("Speach details sent to "+this.emailId);
-    this.emailId = "";
+    // console.log("Speach details sent to "+this.emailId);
+    // console.log("Speech Data => ", this.speechData);
+    this.spinner.show();
+    let mailData = {
+      mailAddress: this.emailId,
+      senderAddress: 'sidmishra675@gmail.com',
+      data: this.speechData 
+    }
+    console.log('Mail Data => '+JSON.stringify(mailData));
+      this.speechService.sendMessage(mailData).subscribe(res =>{
+        if(res){
+          this.spinner.hide();
+          alert("Mail send successful");
+        }
+      },err=>{
+        this.spinner.hide();
+        alert("Something went wrong in sending mail");
+      })
   }
 
 
