@@ -2,7 +2,7 @@ import { Component, OnInit,ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SpeechService } from '../speech.service';
 import { Speech } from '../speech.model';
-import { NgxSpinnerService } from 'ngx-spinner'
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-view-speech',
   templateUrl: './view-speech.component.html',
@@ -70,29 +70,35 @@ export class ViewSpeechComponent implements OnInit {
 
   //Delete speech
   deleteSpeech() {
+    this.spinner.show();
     if(confirm("Are you sure, you want to delete this speech?")){
       let speechId = this.speechForm.controls['id'].value;
       this.speechService.deleteSpeech(speechId)
         .subscribe(response => {
+          this.spinner.hide();
           this.selectedSpeechIdex = 0;
           this.getAllSpeeches();
         },
         errorCode => {
           console.log("Something went wrong.")
+          this.spinner.hide();
         });
     }
   }
  
   //Update Speech 
   updateSpeech() {
+    this.spinner.show();
     let speechForm = this.speechForm.value;
     console.log("speechform update ===> ",JSON.stringify(speechForm));
     this.speechService.updateSpeech(speechForm)
       .subscribe(successCode => {
+        this.spinner.hide();
         alert("Speech updated successfully..!!");
         this.getAllSpeeches(); // After updating speech details succesfully, invoking  get all speeches api
       },
       errorCode => {
+        this.spinner.hide();
         console.log("Something went wrong..!!")
       });
   }
