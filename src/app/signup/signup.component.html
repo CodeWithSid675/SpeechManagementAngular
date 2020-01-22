@@ -1,0 +1,69 @@
+<div class="container">
+    <div class="row">
+        <div class="col text-center jumbotron">
+          <!-- <a routerLink="/login">Back to login</a> -->
+          <h1>Register</h1>
+          <p class="text-h3">First you need to register to get access for speech management tool. </p>
+        </div>
+      </div>
+</div>
+<div class="container" *ngIf="signUpSuccess">
+    <div class="row">
+        <div class="col text-center jumbotron">
+        <h2>Thanks for registering go back to login page for login</h2>
+        <a routerLink="/login">Click here to login</a>
+        </div>
+    </div>
+</div>
+<section *ngIf="!signUpSuccess">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-8 col-xl-6">
+          <!-- <div class="row">
+            <div class="col text-center jumbotron">
+              <h1>Register</h1>
+              <p class="text-h3">First you need to register to get access for speech management tool. </p>
+            </div>
+          </div> -->
+          <div class="row align-items-center">
+            <div class="col mt-4">
+              <input type="text" class="form-control" placeholder="User Name" [(ngModel)]="userName" (keydown)="onChange()">
+            </div>
+          </div>
+          <div class="row align-items-center mt-4">
+            <div class="col">
+              <input type="email" class="form-control" placeholder="Email" [(ngModel)]="mailId" (keydown)="onChange()">
+            </div>
+          </div>
+          <div class="row align-items-center mt-4">
+            <div class="col">
+              <input type="password" class="form-control" placeholder="Password" [(ngModel)]="password" (keydown)="onChange()">
+            </div>
+            <div class="col">
+              <input type="password" class="form-control" placeholder="Confirm Password" [(ngModel)]="confirmPassword" (keydown)="onChange()">
+            </div>
+          </div>
+          <div class="row justify-content-start mt-4">
+            <div class="col">
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="checkbox" class="form-check-input" [(ngModel)]="check">
+                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I Read and Accept <a href="https://www.froala.com">Terms and Conditions</a>
+                </label>
+              </div>
+
+              <button class="btn btn-primary mt-4" (click)="onSignUp()" [disabled]="!check" >Submit</button><br>
+              <div class="text-center" style="color: red;font-size: small;">
+                  {{errorMessage}}
+              </div><br>
+              <div class="text-center">
+              <a routerLink="/login">Sign in instead</a>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ngx-spinner></ngx-spinner>
