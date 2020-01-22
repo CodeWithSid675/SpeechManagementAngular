@@ -42,6 +42,7 @@ submitSpeechForm() {
   let speechForm = this.speechForm.value;
   speechForm.id = UUID.UUID();
   speechForm.userId = "testUser123";
+  speechForm.mailId = JSON.parse(sessionStorage.getItem("userId"));
   // speechForm.epochTime = new Date().getTime();
   console.log("speechForm ==== ",JSON.stringify(speechForm));
   this.articleService.createSpeech(speechForm)

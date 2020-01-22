@@ -34,7 +34,7 @@ export class ViewSpeechComponent implements OnInit {
   //API call to get list of speeches
   getAllSpeeches() {
     this.spinner.show();
-    this.speechService.getAllSpeeches()
+    this.speechService.getSpeechOnId()
       .subscribe(data => {
         console.log(data);
         this.allSpeaches = [];
@@ -45,7 +45,7 @@ export class ViewSpeechComponent implements OnInit {
           this.speechData = this.allSpeaches[index];
           this.spinner.hide();
         }
-
+        this.spinner.hide();
       },
       errorCode => {
         console.log("Something went wrong");

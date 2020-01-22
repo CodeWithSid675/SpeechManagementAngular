@@ -5,5 +5,6 @@ export class Speech {
              public subjectKeyword: string, 
              public date: string,
              public speechContent: string,
+             public mailId: string
             ){}
  }

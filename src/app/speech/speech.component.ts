@@ -24,6 +24,7 @@ export class SpeechComponent implements OnInit {
 
   changeTab(tab) {
 
+    
 
     // let abc = Boolean("FALSE".toLowerCase());
     // console.log("abc   >>> ", typeof (abc), abc)
@@ -36,11 +37,16 @@ export class SpeechComponent implements OnInit {
         break;
       case "search":
         this.currentTab = "SEARCH";
-        break;
+        break; 
       default:
         console.log("Something went wrong..!! ", tab);
     }
     this.router.navigate(['speech/' + tab]);
+  }
+
+  logout(){
+      sessionStorage.removeItem('userId');
+      this.router.navigate(['/login']);
   }
 
 }

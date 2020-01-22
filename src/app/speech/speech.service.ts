@@ -20,15 +20,22 @@ export class SpeechService {
     
     //Fetch all Speeches
     getAllSpeeches(): Observable<Speech[]> {
+        // return this.http.get(this.articleUrl+'/mail_id='+mailId)
         return this.http.get(this.articleUrl)
        .map(this.extractData)
 	   .catch(this.handleError);
 
     }
 
+    getSpeechOnId():Observable<Speech[]>{
+        let mailId = JSON.parse(sessionStorage.getItem("userId")); 
+        return this.http.get(this.articleUrl+"/"+mailId)
+        .map(this.extractData)
+        .catch(this.handleError); 
+    }
+
     //Create Speech
     createSpeech(article: Speech):Observable<number> {
-
         return this.http.post(this.articleUrl, article, this.requestOptions)
                .map(success => success.status)
                .catch(this.handleError);
@@ -36,7 +43,7 @@ export class SpeechService {
    
     //Update Speech
     updateSpeech(article: Speech):Observable<number> {
-	let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
+	// let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
         return this.http.put(this.articleUrl , article, this.requestOptions)
                .map(success => success.status)
                .catch(this.handleError);

@@ -41,7 +41,7 @@ export class SearchSpeechComponent implements OnInit {
           this.setFormValue(this.allSpeaches[0],0);
           this.spinner.hide();
         }
-
+        this.spinner.hide();
       },
       errorCode => {
         alert("Something went wrong");
