@@ -15,8 +15,10 @@ import { SearchSpeechComponent } from './speech/search-speech/search-speech.comp
 import {SpeechComponent} from './speech/speech.component';
 
 import {SpeechService} from './speech/speech.service';
-import { NgxSpinnerModule } from 'ngx-spinner'
-
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { LoginComponent } from './login/login.component';
+import { SignUpComponent } from './signup/signup.component';
+import { AuthService } from './login/login.service';
 // import { ModalMoldule } from 'ngx-bootstrap/modal';
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { NgxSpinnerModule } from 'ngx-spinner'
     SearchSpeechComponent,
     ViewSpeechComponent,
     SpeechComponent,
-    SearchSpeechPipe
+    SearchSpeechPipe,
+    LoginComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +41,7 @@ import { NgxSpinnerModule } from 'ngx-spinner'
     // ModalModule,
     // ModalModule.forRoot()
   ],
-  providers: [SpeechService],
+  providers: [SpeechService,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

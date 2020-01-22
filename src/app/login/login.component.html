@@ -1,0 +1,54 @@
+<div *ngIf="!loginSuccess">
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="text-center">Speech Management</h1>
+            <p class="text-center"> This app will allow to add a speech and will able to share with your collages</p>
+        </div>
+    </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-heading">
+                <h2 class="text-center">Login</h2>
+            </div>
+            <hr />
+            <div class="modal-body">
+                <form action="" role="form">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-user"></span>
+                            </span>
+                            <input type="text" class="form-control" [(ngModel)]="mailId" placeholder="Mail ID"
+                                required [ngModelOptions]="{standalone: true}" (keydown)="onChange()"  />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-lock"></span>
+                            </span>
+                            <input type="password" class="form-control" [(ngModel)]="password" placeholder="Password"
+                                required [ngModelOptions]="{standalone: true}" (keydown)="onChange()" />
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group text-center">
+                        <button type="button" class="btn btn-success btn-lg" (click)="onLogin()">Login</button>
+                        <a href="#" class="btn btn-link">Forget Password</a>
+                        <div class="btn btn-link" (click)="signUpRoute()">Register</div>
+                    </div>
+                    <div class="form-group text-center" style="color: red; font-size: small;">
+                        {{errorMessage}}
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="loginSuccess">
+    <router-outlet></router-outlet>
+</div>
+<ngx-spinner></ngx-spinner>
