@@ -1,0 +1,52 @@
+<section *ngIf="allSpeaches.length > 0; else noSpeeches">
+  <nav>
+    <div class="card">
+      <div class="card-header">
+        <input type="text" class="serch-tb" placeholder="Search speech..." [(ngModel)]="searchKey" (input)="resetForm()">
+      </div>
+      <ul class="list-group list-group-flush speechList-container">
+        <ng-container *ngFor="let speech of allSpeaches | searchSpeechfilter: searchKey ;let i = index;">
+          <li class="list-group-item speech-list" [class.active]="selectedSpeechIdex == i " (click)="setFormValue(speech,i)">{{speech.subjectKeyword}}</li>
+        </ng-container>
+      </ul>
+    </div>
+  </nav>
+  <article>
+    <div class="card speech-details-block">
+      <div class="card-body">
+        <form [formGroup]="speechForm" (ngSubmit)="submitSpeechForm()">
+          <div calss="row">
+            <div class="col">
+              <textarea class="speach-content" name="text" formControlName="speechContent" readonly></textarea>
+            </div>
+          </div>
+          <div class="row tb-section">
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Author" formControlName="author" readonly>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Subject area keywords" formControlName="subjectKeyword" readonly>
+            </div>
+            <div class="col">
+              <input type="date" class="form-control" placeholder="DD/MM/YYYY" formControlName="date" readonly>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </article>
+</section>
+
+<ng-template #noSpeeches>
+  <div class="card speech-details-block">
+    <div class="card-body">
+      <div calss="row">
+        <div class="col">
+          <h3 class="text-center">No records found..!!</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ngx-spinner></ngx-spinner>

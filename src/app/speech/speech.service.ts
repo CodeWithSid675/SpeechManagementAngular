@@ -34,9 +34,23 @@ export class SpeechService {
         .catch(this.handleError); 
     }
 
+    getSharedArticleSpeechID():Observable<Speech[]>{
+        let mailId = JSON.parse(sessionStorage.getItem("userId")); 
+        return this.http.get(this.articleUrl+"/share/"+mailId)
+        .map(this.extractData)
+        .catch(this.handleError); 
+    }
+
     //Create Speech
     createSpeech(article: Speech):Observable<number> {
         return this.http.post(this.articleUrl, article, this.requestOptions)
+               .map(success => success.status)
+               .catch(this.handleError);
+    }
+
+    //Create share speech data
+    createShareSpeech(article):Observable<number> {
+        return this.http.post(this.articleUrl + '/share', article, this.requestOptions)
                .map(success => success.status)
                .catch(this.handleError);
     }

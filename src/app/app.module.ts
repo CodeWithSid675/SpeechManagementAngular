@@ -12,6 +12,7 @@ import { HttpModule } from '@angular/http';
 import { CreateSpeechComponent } from './speech/create-speech/create-speech.component';
 import { ViewSpeechComponent } from './speech/view-speech/view-speech.component';
 import { SearchSpeechComponent } from './speech/search-speech/search-speech.component';
+import { ShareSpeechComponent } from './speech/share-speech/share-speech.component';
 import {SpeechComponent} from './speech/speech.component';
 
 import {SpeechService} from './speech/speech.service';
@@ -29,7 +30,8 @@ import { AuthService } from './login/login.service';
     SpeechComponent,
     SearchSpeechPipe,
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
+    ShareSpeechComponent
   ],
   imports: [
     BrowserModule,

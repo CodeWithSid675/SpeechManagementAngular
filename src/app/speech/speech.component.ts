@@ -17,6 +17,8 @@ export class SpeechComponent implements OnInit {
       this.currentTab = "VIEW";
     }else if(url.indexOf("search") >= 0){
       this.currentTab = "SEARCH";
+    }else if(url.indexOf("share") >= 0){
+      this.currentTab = "SHARE";
     }else{
       console.log("Something went wrong >> ",url)
     }
@@ -37,6 +39,9 @@ export class SpeechComponent implements OnInit {
         break;
       case "search":
         this.currentTab = "SEARCH";
+        break; 
+      case "share":
+        this.currentTab = "SHARE";
         break; 
       default:
         console.log("Something went wrong..!! ", tab);

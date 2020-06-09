@@ -126,26 +126,42 @@ export class ViewSpeechComponent implements OnInit {
   }
 
 //Send email function
-  sendEmail(){
-    // console.log("Speach details sent to "+this.emailId);
-    // console.log("Speech Data => ", this.speechData);
+  // sendEmail(){
+  //   // console.log("Speach details sent to "+this.emailId);
+  //   // console.log("Speech Data => ", this.speechData);
+  //   this.spinner.show();
+  //   let mailData = {
+  //     mailAddress: this.emailId,
+  //     senderAddress: 'sidmishra675@gmail.com',
+  //     data: this.speechData 
+  //   }
+  //   console.log('Mail Data => '+JSON.stringify(mailData));
+  //     this.speechService.sendMessage(mailData).subscribe(res =>{
+  //       if(res){
+  //         this.spinner.hide();
+  //         alert("Mail send successful");
+  //       }
+  //     },err=>{
+  //       this.spinner.hide();
+  //       alert("Something went wrong in sending mail");
+  //     })
+  // }
+shareSpeech(){
     this.spinner.show();
-    let mailData = {
-      mailAddress: this.emailId,
-      senderAddress: 'sidmishra675@gmail.com',
-      data: this.speechData 
+    let data = {
+      userId : this.emailId,
+      speechId : this.speechData.id
     }
-    console.log('Mail Data => '+JSON.stringify(mailData));
-      this.speechService.sendMessage(mailData).subscribe(res =>{
-        if(res){
-          this.spinner.hide();
-          alert("Mail send successful");
-        }
-      },err=>{
+    console.log("share insert data ::: " , data);
+    this.speechService.createShareSpeech(data).subscribe(res => {
+      if(res){
         this.spinner.hide();
-        alert("Something went wrong in sending mail");
-      })
-  }
-
+        alert("Successfully shared")
+      }
+    },err =>{
+      this.spinner.hide();
+      alert("Something went wrong");
+    })
+}
 
 }
